@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>💖 ¿Quieres ser mi San Valentín? 💖</title>
+    <title>Feliz San Valentín</title>
     <style>
         body {
             background: linear-gradient(135deg, #ff9a9e, #fad0c4);
@@ -16,6 +16,7 @@
             height: 100vh;
             margin: 0;
             overflow: hidden;
+            position: relative;
         }
         h1 {
             color: #d63384;
@@ -58,20 +59,63 @@
             color: #d63384;
             margin-top: 20px;
         }
+        .balloon {
+            position: absolute;
+            width: 50px;
+            height: 70px;
+            background-color: red;
+            border-radius: 50%;
+            animation: float 5s linear infinite;
+        }
+        @keyframes float {
+            from {
+                transform: translateY(100vh);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(-10vh);
+                opacity: 0;
+            }
+        }
     </style>
     <script>
+        let saidYes = false;
+        let noMessages = ["¿Estás segura? 😢", "Piénsalo bien... 💭", "¿Tal vez sí? 🥺", "Vamos, di que sí 😘"];
+        let noClickCount = 0;
+
         function handleYesClick() {
-            document.getElementById('response').innerText = '¡Sabía que dirías que sí! 💖';
+            let responseText = document.getElementById('response');
+            if (saidYes) {
+                responseText.innerText = "¡Ya dijiste que sí! No hay vuelta atrás 💞";
+            } else {
+                responseText.innerText = "¡Sabía que dirías que sí! 💖";
+                saidYes = true;
+                generateBalloons();
+            }
         }
+        
         function handleNoClick() {
             let responseText = document.getElementById('response');
-            responseText.innerText = '¿Estás segura? 😢';
-            setTimeout(() => {
-                responseText.innerText = 'Piénsalo bien... 💭';
+            if (noClickCount >= noMessages.length) {
+                responseText.innerText = "¡Ya es suficiente! No hay vuelta atrás 😈";
+            } else {
+                responseText.innerText = noMessages[noClickCount];
+                noClickCount++;
+            }
+        }
+        
+        function generateBalloons() {
+            for (let i = 0; i < 20; i++) {
+                let balloon = document.createElement('div');
+                balloon.classList.add('balloon');
+                balloon.style.left = Math.random() * 100 + "vw";
+                balloon.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+                balloon.style.animationDuration = (Math.random() * 3 + 3) + "s";
+                document.body.appendChild(balloon);
                 setTimeout(() => {
-                    responseText.innerText = '¿Tal vez sí? 🥺';
-                }, 2000);
-            }, 2000);
+                    balloon.remove();
+                }, 5000);
+            }
         }
     </script>
 </head>
