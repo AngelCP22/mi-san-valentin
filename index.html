@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <style>
         body {
-            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+            background: linear-gradient(135deg, #ffccd5, #ffebf0);
             text-align: center;
             font-family: 'Pacifico', cursive;
             display: flex;
@@ -83,7 +83,7 @@
         }
         .balloon, .heart-float {
             position: absolute;
-            animation: float 5s linear forwards, sway 3s ease-in-out infinite;
+            animation: float 5s linear forwards;
         }
         .balloon {
             width: 50px;
@@ -105,14 +105,6 @@
                 opacity: 0;
             }
         }
-        @keyframes sway {
-            0%, 100% {
-                transform: translateX(0);
-            }
-            50% {
-                transform: translateX(20px);
-            }
-        }
     </style>
     <script>
         let saidYes = false;
@@ -129,7 +121,7 @@
         function handleYesClick() {
             let responseText = document.getElementById('response');
             if (saidYes) {
-                responseText.innerText = "¡Ya dijiste que sí! No hay vuelta atrás 💞";
+                responseText.innerText = "¡Sabia que serias ser mi San Valentin💞";
             } else {
                 responseText.innerText = "¡Sabía que dirías que sí! 💖";
                 saidYes = true;
