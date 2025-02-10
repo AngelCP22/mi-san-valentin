@@ -47,8 +47,11 @@
             border-radius: 15px;
             cursor: pointer;
             margin: 10px;
-            transition: transform 0.2s ease-in-out;
+            transition: transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
             font-family: 'Pacifico', cursive;
+        }
+        .choice-buttons button:hover {
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
         }
         .choice-buttons button:active {
             transform: scale(0.9);
@@ -76,14 +79,21 @@
             color: #d63384;
             margin-top: 20px;
             transition: opacity 0.5s ease-in-out;
+            opacity: 1;
+        }
+        .balloon, .heart-float {
+            position: absolute;
+            animation: float 5s linear forwards, sway 3s ease-in-out infinite;
         }
         .balloon {
-            position: absolute;
             width: 50px;
             height: 70px;
             background-color: red;
             border-radius: 50%;
-            animation: float 5s linear infinite, sway 3s ease-in-out infinite;
+        }
+        .heart-float {
+            font-size: 30px;
+            color: pink;
         }
         @keyframes float {
             from {
@@ -119,13 +129,11 @@
         function handleYesClick() {
             let responseText = document.getElementById('response');
             if (saidYes) {
-                responseText.innerText = "¡Sabia que querias ser mi San Valentín 💞";
+                responseText.innerText = "¡Ya dijiste que sí! No hay vuelta atrás 💞";
             } else {
                 responseText.innerText = "¡Sabía que dirías que sí! 💖";
                 saidYes = true;
-                generateBalloons();
-                playSound('yes');
-                launchConfetti();
+                generateBalloonsAndHearts();
             }
         }
         
@@ -136,42 +144,23 @@
             } else {
                 responseText.innerText = noMessages[noClickCount % noMessages.length];
                 noClickCount++;
-                playSound('no');
             }
         }
         
-        function generateBalloons() {
+        function generateBalloonsAndHearts() {
             for (let i = 0; i < 20; i++) {
-                let balloon = document.createElement('div');
-                balloon.classList.add('balloon');
-                balloon.style.left = Math.random() * 100 + "vw";
-                balloon.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
-                balloon.style.animationDuration = (Math.random() * 3 + 3) + "s";
-                document.body.appendChild(balloon);
+                let element = document.createElement('div');
+                element.classList.add(Math.random() > 0.5 ? 'balloon' : 'heart-float');
+                if (element.classList.contains('heart-float')) {
+                    element.innerHTML = "❤️";
+                }
+                element.style.left = Math.random() * 100 + "vw";
+                element.style.animationDuration = (Math.random() * 3 + 3) + "s";
+                document.body.appendChild(element);
                 setTimeout(() => {
-                    balloon.remove();
+                    element.remove();
                 }, 5000);
             }
-        }
-
-        function launchConfetti() {
-            for (let i = 0; i < 50; i++) {
-                let confetti = document.createElement('div');
-                confetti.style.position = 'absolute';
-                confetti.style.left = Math.random() * 100 + 'vw';
-                confetti.style.top = '-10px';
-                confetti.style.width = '10px';
-                confetti.style.height = '10px';
-                confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
-                confetti.style.animation = 'fall 2s linear';
-                document.body.appendChild(confetti);
-                setTimeout(() => confetti.remove(), 2000);
-            }
-        }
-
-        function playSound(type) {
-            let sound = new Audio(type === 'yes' ? 'https://www.fesliyanstudios.com/play-mp3/4385' : 'https://www.fesliyanstudios.com/play-mp3/4383');
-            sound.play();
         }
     </script>
 </head>
