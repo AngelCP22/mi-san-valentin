@@ -72,8 +72,9 @@
     </div>
     
     <script>
-        let phrases = ["¡Eres el amor de mi vida!", "¡No puedo vivir sin ti!", "¡Siempre supe que dirías sí!", "¡Juntos para siempre!"];
+        let phrases = ["¡Eres el amor de mi vida!", "¡No puedo vivir sin ti!", "¡Siempre supe que dirías sí!", "¡Juntos para siempre!","¡Sabia que querias kchar!"];
         let phraseIndex = 0;
+        let moveCount = 0;
 
         function acceptLove() {
             document.getElementById("question").innerText = phrases[phraseIndex];
@@ -89,6 +90,13 @@
             let maxX = window.innerWidth - noButton.offsetWidth - 20;
             let maxY = window.innerHeight - noButton.offsetHeight - 20;
             let newX, newY;
+            
+            moveCount++;
+            
+            if (moveCount >= 100) {
+                moveCount = 0; // Reset count
+                return; // Stop moving after 3 times
+            }
             
             do {
                 newX = Math.random() * maxX;
