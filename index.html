@@ -86,6 +86,8 @@
         function handleYesClick() {
             let responseText = document.getElementById('response');
             if (saidYes) {
+                responseText.innerText = "¡Ya dijiste que sí! No hay vuelta atrás 💞";
+            } else {
                 responseText.innerText = "¡Sabía que dirías que sí! 💖";
                 saidYes = true;
                 generateBalloons();
@@ -94,10 +96,10 @@
         
         function handleNoClick() {
             let responseText = document.getElementById('response');
-            if (noClickCount >= noMessages.length) {
+            if (saidYes) {
                 responseText.innerText = "¡Ya dijiste que sí! No hay vuelta atrás 💞";
             } else {
-                responseText.innerText = noMessages[noClickCount];
+                responseText.innerText = noMessages[noClickCount % noMessages.length];
                 noClickCount++;
             }
         }
