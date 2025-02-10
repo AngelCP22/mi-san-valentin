@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Quieres ser mi San Valentín?</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #ffe6e6;
+            padding: 50px;
+        }
+        .container {
+            position: relative;
+            display: inline-block;
+        }
+        img {
+            width: 300px;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        button {
+            font-size: 18px;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        #yes {
+            background-color: #ff4d4d;
+            color: white;
+        }
+        #no {
+            background-color: #666;
+            color: white;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>¿Quieres ser mi San Valentín?</h1>
+        <img id="valentineImage" src="https://via.placeholder.com/300" alt="San Valentín">
+        <div class="buttons">
+            <button id="yes" onclick="acceptLove()">Sí</button>
+            <button id="no" onmouseover="moveNo()">No</button>
+        </div>
+    </div>
+    
+    <script>
+        function acceptLove() {
+            document.querySelector("h1").innerText = "¡Eres el amor de mi vida!";
+            document.getElementById("valentineImage").src = "https://via.placeholder.com/300/ff4d4d/ffffff?text=Te+Amo";
+        }
+
+        function moveNo() {
+            let noButton = document.getElementById("no");
+            let x = Math.random() * (window.innerWidth - 100);
+            let y = Math.random() * (window.innerHeight - 50);
+            noButton.style.left = `${x}px`;
+            noButton.style.top = `${y}px`;
+        }
+    </script>
+</body>
+</html>
