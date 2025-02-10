@@ -28,11 +28,14 @@
             width: 80%;
             max-width: 300px;
         }
+        h1 {
+            margin-top: 20px;
+        }
         .buttons {
             margin-top: 20px;
-            position: relative;
             display: flex;
             gap: 20px;
+            position: relative;
         }
         button {
             font-size: 18px;
@@ -40,6 +43,7 @@
             border: none;
             cursor: pointer;
             border-radius: 5px;
+            position: relative;
         }
         #yes {
             background-color: #ff4d4d;
@@ -48,19 +52,19 @@
         #no {
             background-color: #666;
             color: white;
-            position: absolute;
         }
         @media (max-width: 600px) {
             .buttons {
                 flex-direction: column;
+                gap: 10px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1 id="question">¿Quieres ser mi San Valentín?</h1>
         <img id="valentineImage" src="https://placekitten.com/300/300" alt="San Valentín">
+        <h1 id="question">¿Quieres ser mi San Valentín?</h1>
         <div class="buttons">
             <button id="yes" onclick="acceptLove()">Sí</button>
             <button id="no" onmouseover="moveNo()">No</button>
