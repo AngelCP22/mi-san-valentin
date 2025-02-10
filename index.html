@@ -27,7 +27,8 @@
         }
         img {
             width: 80%;
-            max-width: 300px;
+            max-width: 400px;
+            height: auto;
         }
         h1 {
             margin-top: 20px;
@@ -44,15 +45,16 @@
             border: none;
             cursor: pointer;
             border-radius: 5px;
-            position: absolute;
         }
         #yes {
             background-color: #ff4d4d;
             color: white;
+            position: relative;
         }
         #no {
             background-color: #666;
             color: white;
+            position: absolute;
         }
         @media (max-width: 600px) {
             .buttons {
@@ -73,7 +75,7 @@
     </div>
     
     <script>
-        let phrases = ["¡Eres el amor de mi vida!", "¡No puedo vivir sin ti!", "¡Siempre supe que dirías sí!", "¡Juntos para siempre!","¡Sabia que querias kchar!"];
+        let phrases = ["¡Eres el amor de mi vida!", "¡No puedo vivir sin ti!", "¡Siempre supe que dirías sí!", "¡Juntos para siempre!"];
         let phraseIndex = 0;
 
         function acceptLove() {
@@ -83,7 +85,7 @@
             } else {
                 document.getElementById("valentineImage").src = "https://placekitten.com/400/400";
                 setTimeout(() => {
-                    window.location.href = "https://www.facebook.com/"; // Reemplaza con la URL de destino
+                    window.location.href = "https://www.ejemplo.com"; // Reemplaza con la URL de destino
                 }, 2000);
             }
             document.getElementById("no").style.display = "none";
@@ -99,8 +101,8 @@
                 newX = Math.random() * maxX;
                 newY = Math.random() * maxY;
             } while (
-                newX < 100 || newX > maxX - 100 ||
-                newY < 100 || newY > maxY - 100
+                newX < 50 || newX > maxX - 50 ||
+                newY < 50 || newY > maxY - 50
             );
             
             noButton.style.left = `${newX}px`;
