@@ -73,10 +73,10 @@
 
         function acceptLove() {
             document.getElementById("question").innerText = phrases[phraseIndex];
-            document.getElementById("valentineImage").src = "https://placekitten.com/400/400";
             if (phraseIndex < phrases.length - 1) {
                 phraseIndex++;
             }
+            document.getElementById("no").style.display = "none";
         }
 
         function moveNo() {
@@ -86,11 +86,6 @@
             let maxY = window.innerHeight - noButton.offsetHeight - 20;
             let newX, newY;
             
-            if (window.innerWidth <= 600) {
-                noButton.style.display = "none";
-                return;
-            }
-            
             do {
                 newX = Math.random() * maxX;
                 newY = Math.random() * maxY;
@@ -98,6 +93,7 @@
                 newX > container.offsetLeft && newX < container.offsetLeft + container.offsetWidth &&
                 newY > container.offsetTop && newY < container.offsetTop + container.offsetHeight
             );
+            
             noButton.style.left = `${newX}px`;
             noButton.style.top = `${newY}px`;
         }
