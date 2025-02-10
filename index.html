@@ -30,16 +30,6 @@
             font-size: 20px;
             color: #6d6875;
         }
-        .button {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #ff4d6d;
-            color: white;
-            text-decoration: none;
-            border-radius: 10px;
-            font-size: 18px;
-        }
         .choice-buttons {
             margin-top: 20px;
         }
@@ -59,13 +49,25 @@
             background-color: #dc3545;
             color: white;
         }
+        #response {
+            font-size: 22px;
+            color: #d63384;
+            margin-top: 20px;
+        }
     </style>
     <script>
         function handleYesClick() {
-            alert('¡Sabía que dirías que sí! 💖');
+            document.getElementById('response').innerText = '¡Sabía que dirías que sí! 💖';
         }
         function handleNoClick() {
-            alert('¡Oh no! 😢 Pero aún así, te deseo un feliz día.');
+            let responseText = document.getElementById('response');
+            responseText.innerText = '¿Estás segura? 😢';
+            setTimeout(() => {
+                responseText.innerText = 'Piénsalo bien... 💭';
+                setTimeout(() => {
+                    responseText.innerText = '¿Tal vez sí? 🥺';
+                }, 2000);
+            }, 2000);
         }
     </script>
 </head>
@@ -73,10 +75,10 @@
     <h1>💖 ¡Feliz San Valentín! 💖</h1>
     <p class="heart">❤️</p>
     <p class="message">Que este día esté lleno de amor, felicidad y momentos especiales.</p>
-    <a href="#" class="button">Enviar un Mensaje de Amor</a>
     <div class="choice-buttons">
         <button class="yes-button" onclick="handleYesClick()">Sí</button>
         <button class="no-button" onclick="handleNoClick()">No</button>
     </div>
+    <p id="response"></p>
 </body>
 </html>
