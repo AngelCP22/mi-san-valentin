@@ -23,6 +23,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            position: relative;
         }
         img {
             width: 80%;
@@ -43,7 +44,7 @@
             border: none;
             cursor: pointer;
             border-radius: 5px;
-            position: relative;
+            position: absolute;
         }
         #yes {
             background-color: #ff4d4d;
@@ -74,36 +75,32 @@
     <script>
         let phrases = ["¡Eres el amor de mi vida!", "¡No puedo vivir sin ti!", "¡Siempre supe que dirías sí!", "¡Juntos para siempre!","¡Sabia que querias kchar!"];
         let phraseIndex = 0;
-        let moveCount = 0;
 
         function acceptLove() {
             document.getElementById("question").innerText = phrases[phraseIndex];
             if (phraseIndex < phrases.length - 1) {
                 phraseIndex++;
+            } else {
+                document.getElementById("valentineImage").src = "https://placekitten.com/400/400";
+                setTimeout(() => {
+                    window.location.href = "https://www.facebook.com/"; // Reemplaza con la URL de destino
+                }, 2000);
             }
             document.getElementById("no").style.display = "none";
         }
 
         function moveNo() {
             let noButton = document.getElementById("no");
-            let container = document.querySelector(".container");
             let maxX = window.innerWidth - noButton.offsetWidth - 20;
             let maxY = window.innerHeight - noButton.offsetHeight - 20;
             let newX, newY;
-            
-            moveCount++;
-            
-            if (moveCount >= 100) {
-                moveCount = 0; // Reset count
-                return; // Stop moving after 3 times
-            }
             
             do {
                 newX = Math.random() * maxX;
                 newY = Math.random() * maxY;
             } while (
-                newX > container.offsetLeft && newX < container.offsetLeft + container.offsetWidth &&
-                newY > container.offsetTop && newY < container.offsetTop + container.offsetHeight
+                newX < 100 || newX > maxX - 100 ||
+                newY < 100 || newY > maxY - 100
             );
             
             noButton.style.left = `${newX}px`;
