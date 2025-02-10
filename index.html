@@ -9,7 +9,7 @@
             text-align: center;
             font-family: Arial, sans-serif;
             background-color: #ffe6e6;
-            padding: 50px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -25,16 +25,18 @@
             align-items: center;
         }
         img {
-            width: 300px;
+            width: 80%;
+            max-width: 300px;
         }
         .buttons {
             margin-top: 20px;
             position: relative;
+            display: flex;
+            gap: 20px;
         }
         button {
             font-size: 18px;
             padding: 10px 20px;
-            margin: 10px;
             border: none;
             cursor: pointer;
             border-radius: 5px;
@@ -48,12 +50,17 @@
             color: white;
             position: absolute;
         }
+        @media (max-width: 600px) {
+            .buttons {
+                flex-direction: column;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1 id="question">¿Quieres ser mi San Valentín?</h1>
-        <img id="valentineImage" src="https://i.imgur.com/oO5YVZ7.png" alt="San Valentín">
+        <img id="valentineImage" src="https://placekitten.com/300/300" alt="San Valentín">
         <div class="buttons">
             <button id="yes" onclick="acceptLove()">Sí</button>
             <button id="no" onmouseover="moveNo()">No</button>
@@ -66,7 +73,7 @@
 
         function acceptLove() {
             document.getElementById("question").innerText = phrases[phraseIndex];
-            document.getElementById("valentineImage").src = "https://i.imgur.com/YM6GbJ4.png";
+            document.getElementById("valentineImage").src = "https://placekitten.com/400/400";
             if (phraseIndex < phrases.length - 1) {
                 phraseIndex++;
             }
@@ -78,6 +85,12 @@
             let maxX = window.innerWidth - noButton.offsetWidth - 20;
             let maxY = window.innerHeight - noButton.offsetHeight - 20;
             let newX, newY;
+            
+            if (window.innerWidth <= 600) {
+                noButton.style.display = "none";
+                return;
+            }
+            
             do {
                 newX = Math.random() * maxX;
                 newY = Math.random() * maxY;
