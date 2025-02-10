@@ -10,16 +10,19 @@
             font-family: Arial, sans-serif;
             background-color: #ffe6e6;
             padding: 50px;
+            position: relative;
+            overflow: hidden;
         }
         .container {
-            position: relative;
             display: inline-block;
+            position: relative;
         }
         img {
             width: 300px;
         }
         .buttons {
             margin-top: 20px;
+            position: relative;
         }
         button {
             font-size: 18px;
@@ -42,7 +45,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>¿Quieres ser mi San Valentín?</h1>
+        <h1 id="question">¿Quieres ser mi San Valentín?</h1>
         <img id="valentineImage" src="https://via.placeholder.com/300" alt="San Valentín">
         <div class="buttons">
             <button id="yes" onclick="acceptLove()">Sí</button>
@@ -51,17 +54,28 @@
     </div>
     
     <script>
+        let phrases = ["¡Eres el amor de mi vida!", "¡No puedo vivir sin ti!", "¡Siempre supe que dirías sí!", "¡Juntos para siempre!"];
+        let phraseIndex = 0;
+
         function acceptLove() {
-            document.querySelector("h1").innerText = "¡Eres el amor de mi vida!";
+            document.getElementById("question").innerText = phrases[phraseIndex];
             document.getElementById("valentineImage").src = "https://via.placeholder.com/300/ff4d4d/ffffff?text=Te+Amo";
+            phraseIndex = (phraseIndex + 1) % phrases.length;
         }
 
         function moveNo() {
             let noButton = document.getElementById("no");
-            let x = Math.random() * (window.innerWidth - 100);
-            let y = Math.random() * (window.innerHeight - 50);
-            noButton.style.left = `${x}px`;
-            noButton.style.top = `${y}px`;
+            let maxX = window.innerWidth - noButton.offsetWidth - 20;
+            let maxY = window.innerHeight - noButton.offsetHeight - 20;
+            
+            let newX = Math.random() * maxX;
+            let newY = Math.random() * maxY;
+            
+            if (newX < 100) newX = 100;
+            if (newY < 100) newY = 100;
+            
+            noButton.style.left = `${newX}px`;
+            noButton.style.top = `${newY}px`;
         }
     </script>
 </body>
