@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Quieres ser mi San Valentín?</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #ffe6e6;
+            padding: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+        .container {
+            display: inline-block;
+            position: relative;
+        }
+        img {
+            width: 300px;
+        }
+        .buttons {
+            margin-top: 20px;
+            position: relative;
+        }
+        button {
+            font-size: 18px;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        #yes {
+            background-color: #ff4d4d;
+            color: white;
+        }
+        #no {
+            background-color: #666;
+            color: white;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="question">¿Quieres ser mi San Valentín?</h1>
+        <img id="valentineImage" src="https://via.placeholder.com/300" alt="San Valentín">
+        <div class="buttons">
+            <button id="yes" onclick="acceptLove()">Sí</button>
+            <button id="no" onmouseover="moveNo()">No</button>
+        </div>
+    </div>
+    
+    <script>
+        let phrases = ["¡Eres el amor de mi vida!", "¡No puedo vivir sin ti!", "¡Siempre supe que dirías sí!", "¡Juntos para siempre!"];
+        let phraseIndex = 0;
+
+        function acceptLove() {
+            document.getElementById("question").innerText = phrases[phraseIndex];
+            document.getElementById("valentineImage").src = "https://via.placeholder.com/300/ff4d4d/ffffff?text=Te+Amo";
+            phraseIndex = (phraseIndex + 1) % phrases.length;
+        }
+
+        function moveNo() {
+            let noButton = document.getElementById("no");
+            let maxX = window.innerWidth - noButton.offsetWidth - 20;
+            let maxY = window.innerHeight - noButton.offsetHeight - 20;
+            
+            let newX = Math.random() * maxX;
+            let newY = Math.random() * maxY;
+            
+            if (newX < 100) newX = 100;
+            if (newY < 100) newY = 100;
+            
+            noButton.style.left = `${newX}px`;
+            noButton.style.top = `${newY}px`;
+        }
+    </script>
+</body>
+</html>
