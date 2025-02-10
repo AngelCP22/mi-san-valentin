@@ -3,15 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feliz San Valentín</title>
+    <title>💖 ¿Quieres ser mi San Valentín? 💖</title>
     <style>
         body {
-            background-color: #ffccd5;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
             text-align: center;
             font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
         }
         h1 {
             color: #d63384;
+            font-size: 36px;
         }
         .heart {
             color: red;
@@ -25,10 +33,6 @@
             to {
                 transform: scale(1.2);
             }
-        }
-        .message {
-            font-size: 20px;
-            color: #6d6875;
         }
         .choice-buttons {
             margin-top: 20px;
@@ -72,9 +76,8 @@
     </script>
 </head>
 <body>
-    <h1>💖 ¡Feliz San Valentín! 💖</h1>
+    <h1>💖 ¿Quieres ser mi San Valentín? 💖</h1>
     <p class="heart">❤️</p>
-    <p class="message">Que este día esté lleno de amor, felicidad y momentos especiales.</p>
     <div class="choice-buttons">
         <button class="yes-button" onclick="handleYesClick()">Sí</button>
         <button class="no-button" onclick="handleNoClick()">No</button>
