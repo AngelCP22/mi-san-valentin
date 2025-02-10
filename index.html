@@ -3,111 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¿Quieres ser mi San Valentín?</title>
+    <title>Feliz San Valentín</title>
     <style>
         body {
+            background-color: #ffccd5;
             text-align: center;
             font-family: Arial, sans-serif;
-            background-color: #ffe6e6;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            position: relative;
-            overflow: hidden;
-            margin: 0;
-        }
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-        }
-        img {
-            width: 80%;
-            max-width: 400px;
-            height: auto;
         }
         h1 {
-            margin-top: 20px;
+            color: #d63384;
         }
-        .buttons {
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 50px;
-            width: 100%;
-            position: relative;
+        .heart {
+            color: red;
+            font-size: 50px;
+            animation: heartbeat 1s infinite alternate;
         }
-        button {
-            font-size: 18px;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        #yes {
-            background-color: #ff4d4d;
-            color: white;
-            position: relative;
-        }
-        #no {
-            background-color: #666;
-            color: white;
-            position: relative;
-        }
-        @media (max-width: 600px) {
-            .buttons {
-                flex-direction: row;
-                gap: 20px;
+        @keyframes heartbeat {
+            from {
+                transform: scale(1);
             }
+            to {
+                transform: scale(1.2);
+            }
+        }
+        .message {
+            font-size: 20px;
+            color: #6d6875;
+        }
+        .button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #ff4d6d;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 18px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <img id="valentineImage" src="https://placekitten.com/300/300" alt="San Valentín">
-        <h1 id="question">¿Quieres ser mi San Valentín?</h1>
-        <div class="buttons">
-            <button id="yes" onclick="acceptLove()">Sí</button>
-            <button id="no" onmouseover="moveNo()">No</button>
-        </div>
-    </div>
-    
-    <script>
-        let phrases = ["¡Eres el amor de mi vida!", "¡No puedo vivir sin ti!", "¡Siempre supe que dirías sí!", "¡Juntos para siempre!"];
-        let phraseIndex = 0;
-
-        function acceptLove() {
-            document.getElementById("question").innerText = phrases[phraseIndex];
-            if (phraseIndex < phrases.length - 1) {
-                phraseIndex++;
-            } else {
-                document.getElementById("valentineImage").src = "https://placekitten.com/400/400";
-            }
-            document.getElementById("no").style.display = "none";
-        }
-
-        function moveNo() {
-            let noButton = document.getElementById("no");
-            let maxX = window.innerWidth - noButton.offsetWidth - 20;
-            let maxY = window.innerHeight - noButton.offsetHeight - 20;
-            let newX, newY;
-            
-            do {
-                newX = Math.random() * maxX;
-                newY = Math.random() * maxY;
-            } while (
-                newX < 50 || newX > maxX - 50 ||
-                newY < 50 || newY > maxY - 50
-            );
-            
-            noButton.style.left = `${newX}px`;
-            noButton.style.top = `${newY}px`;
-        }
-    </script>
+    <h1>💖 ¡Feliz San Valentín! 💖</h1>
+    <p class="heart">❤️</p>
+    <p class="message">Que este día esté lleno de amor, felicidad y momentos especiales.</p>
+    <a href="#" class="button">Enviar un Mensaje de Amor</a>
 </body>
 </html>
