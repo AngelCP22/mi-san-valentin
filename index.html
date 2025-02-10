@@ -24,9 +24,20 @@
             font-size: 40px;
             transition: transform 0.3s ease-in-out;
         }
-        .heart {
-            color: red;
+        .gif-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .gif-container img {
+            width: 300px;
+            height: auto;
+        }
+        .heart-side {
             font-size: 50px;
+            color: red;
+            margin: 0 20px;
             animation: heartbeat 1s infinite alternate;
         }
         @keyframes heartbeat {
@@ -64,16 +75,6 @@
             background-color: #dc3545;
             color: white;
         }
-        .no-button:hover {
-            animation: shake 0.2s;
-        }
-        @keyframes shake {
-            0% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            50% { transform: translateX(5px); }
-            75% { transform: translateX(-5px); }
-            100% { transform: translateX(5px); }
-        }
         #response {
             font-size: 24px;
             color: #d63384;
@@ -81,21 +82,13 @@
             transition: opacity 0.5s ease-in-out;
             opacity: 1;
         }
-        .balloon, .heart-float {
+        .heart {
             position: absolute;
-            animation: float 5s linear forwards;
-        }
-        .balloon {
-            width: 50px;
-            height: 70px;
-            background-color: red;
-            border-radius: 50%;
-        }
-        .heart-float {
             font-size: 30px;
-            color: pink;
+            color: red;
+            animation: floatUp 4s linear infinite;
         }
-        @keyframes float {
+        @keyframes floatUp {
             from {
                 transform: translateY(100vh);
                 opacity: 1;
@@ -120,46 +113,51 @@
 
         function handleYesClick() {
             let responseText = document.getElementById('response');
+            let gifImage = document.getElementById('gifImage');
             if (saidYes) {
-                responseText.innerText = "¡Sabia que querias ser mi San Valentin💞";
-                generateBalloonsAndHearts();
+                responseText.innerText = "¡Sabia que querias ser mi San Valentin 💞";
             } else {
                 responseText.innerText = "¡Sabía que dirías que sí My Love! 💖";
                 saidYes = true;
-                generateBalloonsAndHearts();
+                gifImage.src = "https://i.pinimg.com/originals/e4/9d/7b/e49d7b7e965f09e31b498314b02e3662.gif";
+                createFloatingHearts();
             }
         }
         
         function handleNoClick() {
             let responseText = document.getElementById('response');
+            let gifImage = document.getElementById('gifImage');
             if (saidYes) {
                 responseText.innerText = "¡Ya dijiste que sí! No hay vuelta atrás 💞";
             } else {
                 responseText.innerText = noMessages[noClickCount % noMessages.length];
+                gifImage.src = "https://media.tenor.com/ivKWdfdbV3EAAAAi/goma-goma-cat.gif";
                 noClickCount++;
             }
         }
-        
-        function generateBalloonsAndHearts() {
+
+        function createFloatingHearts() {
             for (let i = 0; i < 20; i++) {
-                let element = document.createElement('div');
-                element.classList.add(Math.random() > 0.5 ? 'balloon' : 'heart-float');
-                if (element.classList.contains('heart-float')) {
-                    element.innerHTML = "❤️";
-                }
-                element.style.left = Math.random() * 100 + "vw";
-                element.style.animationDuration = (Math.random() * 3 + 3) + "s";
-                document.body.appendChild(element);
+                let heart = document.createElement("div");
+                heart.className = "heart";
+                heart.innerHTML = "❤️";
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+                document.body.appendChild(heart);
                 setTimeout(() => {
-                    element.remove();
-                }, 5000);
+                    heart.remove();
+                }, 4000);
             }
         }
     </script>
 </head>
 <body>
     <h1>💖 ¿Quieres ser mi San Valentín? 💖</h1>
-    <p class="heart">❤️</p>
+    <div class="gif-container">
+        <span class="heart-side">❤️</span>
+        <img id="gifImage" src="https://i.pinimg.com/originals/e4/9d/7b/e49d7b7e965f09e31b498314b02e3662.gif" alt="San Valentín GIF">
+        <span class="heart-side">❤️</span>
+    </div>
     <div class="choice-buttons">
         <button class="yes-button" onclick="handleYesClick()">Sí</button>
         <button class="no-button" onclick="handleNoClick()">No</button>
