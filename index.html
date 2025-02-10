@@ -40,12 +40,43 @@
             border-radius: 10px;
             font-size: 18px;
         }
+        .choice-buttons {
+            margin-top: 20px;
+        }
+        .choice-buttons button {
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        .yes-button {
+            background-color: #28a745;
+            color: white;
+        }
+        .no-button {
+            background-color: #dc3545;
+            color: white;
+        }
     </style>
+    <script>
+        function handleYesClick() {
+            alert('¡Sabía que dirías que sí! 💖');
+        }
+        function handleNoClick() {
+            alert('¡Oh no! 😢 Pero aún así, te deseo un feliz día.');
+        }
+    </script>
 </head>
 <body>
     <h1>💖 ¡Feliz San Valentín! 💖</h1>
     <p class="heart">❤️</p>
     <p class="message">Que este día esté lleno de amor, felicidad y momentos especiales.</p>
     <a href="#" class="button">Enviar un Mensaje de Amor</a>
+    <div class="choice-buttons">
+        <button class="yes-button" onclick="handleYesClick()">Sí</button>
+        <button class="no-button" onclick="handleNoClick()">No</button>
+    </div>
 </body>
 </html>
