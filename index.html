@@ -10,12 +10,19 @@
             font-family: Arial, sans-serif;
             background-color: #ffe6e6;
             padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             position: relative;
             overflow: hidden;
+            margin: 0;
         }
         .container {
-            display: inline-block;
-            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         img {
             width: 300px;
@@ -46,7 +53,7 @@
 <body>
     <div class="container">
         <h1 id="question">¿Quieres ser mi San Valentín?</h1>
-        <img id="valentineImage" src="https://via.placeholder.com/300" alt="San Valentín">
+        <img id="valentineImage" src="https://i.imgur.com/oO5YVZ7.png" alt="San Valentín">
         <div class="buttons">
             <button id="yes" onclick="acceptLove()">Sí</button>
             <button id="no" onmouseover="moveNo()">No</button>
@@ -59,21 +66,25 @@
 
         function acceptLove() {
             document.getElementById("question").innerText = phrases[phraseIndex];
-            document.getElementById("valentineImage").src = "https://via.placeholder.com/300/ff4d4d/ffffff?text=Te+Amo";
-            phraseIndex = (phraseIndex + 1) % phrases.length;
+            document.getElementById("valentineImage").src = "https://i.imgur.com/YM6GbJ4.png";
+            if (phraseIndex < phrases.length - 1) {
+                phraseIndex++;
+            }
         }
 
         function moveNo() {
             let noButton = document.getElementById("no");
+            let container = document.querySelector(".container");
             let maxX = window.innerWidth - noButton.offsetWidth - 20;
             let maxY = window.innerHeight - noButton.offsetHeight - 20;
-            
-            let newX = Math.random() * maxX;
-            let newY = Math.random() * maxY;
-            
-            if (newX < 100) newX = 100;
-            if (newY < 100) newY = 100;
-            
+            let newX, newY;
+            do {
+                newX = Math.random() * maxX;
+                newY = Math.random() * maxY;
+            } while (
+                newX > container.offsetLeft && newX < container.offsetLeft + container.offsetWidth &&
+                newY > container.offsetTop && newY < container.offsetTop + container.offsetHeight
+            );
             noButton.style.left = `${newX}px`;
             noButton.style.top = `${newY}px`;
         }
